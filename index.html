@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Finance Tracker</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: #f8f9fa; /* Light grey background */
+        }
+
+        .container-fluid {
+            flex-grow: 1;
+            padding: 2rem; /* Increased padding */
+        }
+
+        .dashboard {
+            background: linear-gradient(to right, #4CAF50, #8BC34A); /* Gradient background */
+            color: white;
+            padding: 2rem;
+            border-radius: 15px; /* More rounded corners */
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        .dashboard h3 {
+            font-size: 1.75rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .dashboard span {
+            font-size: 1.5rem;
+        }
+
+        .tracker-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #343a40; /* Dark grey title */
+        }
+
+        .btn-custom {
+            padding: 1rem 2rem;
+            font-size: 1.25rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            transition: transform 0.2s; /* Smooth hover effect */
+        }
+
+        .btn-custom:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0069d9;
+            border-color: #0062cc;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+
+        .btn-warning {
+            background-color: #ffc107;
+            border-color: #ffc107;
+            color: #212529; /* Dark text for better contrast */
+        }
+
+        .btn-warning:hover {
+            background-color: #e0a800;
+            border-color: #d39e00;
+        }
+        /* Added icon styling */
+        .btn-custom i {
+            margin-right: 0.5rem;
+        }
+        footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="dashboard text-center">
+                    <h3>Total Income: $<span id="totalIncome">0</span></h3>
+                    <h3>Total Expense: $<span id="totalExpense">0</span></h3>
+                    <h3>Current Balance: $<span id="currentBalance">0</span></h3>
+                </div>
+
+                <h2 class="tracker-title">Personal Finance Tracker</h2>
+
+                <div class="text-center">
+                    <a href="add_transaction.html" class="btn btn-primary btn-lg btn-block btn-custom"><i class="fas fa-plus-circle"></i>Add Transaction</a>
+                    <a href="transaction_history.html" class="btn btn-success btn-lg btn-block btn-custom"><i class="fas fa-history"></i>Transaction History</a>
+                    <a href="daily_transaction.html" class="btn btn-warning btn-lg btn-block btn-custom"><i class="fas fa-calendar-day"></i>Daily Transaction History</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Personal Finance Tracker</p>
+    </footer>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        async function loadDashboardDat() {
+            try {
+                const rest = await fetch('http://localhost:3000/transactions');
+                if (!rest.ok) throw new Error('Failed to fetch transactions');
+                const transactions = await rest.json();
+
+                let totalIncom = 0;
+                let totalExpens = 0;
+
+                transactions.forEach(t => {
+                    if (t.type === 'income') totalIncom += Number(t.amount);
+                    if (t.type === 'expense') totalExpens += Number(t.amount);
+                });
+
+                document.getElementById('totalIncome').textContent = totalIncom.toFixed(2);
+                document.getElementById('totalExpense').textContent = totalExpens.toFixed(2);
+                document.getElementById('currentBalance').textContent = (totalIncom - totalExpens).toFixed(2);
+
+            } catch (error) {
+                console.error('Error loading dashboard data:', error);
+            }
+        }
+
+        loadDashboardDat();
+    </script>
+</body>
+
+</html>

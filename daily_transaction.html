@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Transactions</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <h2 class="text-center mb-4">Daily Transactions</h2>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Description</th>
+                                <th>Amount</th>
+                                <th>Type</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactionTable"></tbody>
+                        <tfoot>
+                            <tr class="font-weight-bold table-secondary">
+                                <td>Total Income:</td>
+                                <td id="totalIncome">0</td>
+                                <td></td>
+                            </tr>
+                            <tr class="font-weight-bold table-secondary">
+                                <td>Total Expense:</td>
+                                <td id="totalExpense">0</td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-success" onclick="window.location.href='index.html'">Back to Home</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        async function loadDailyTransaction() {
+            try {
+                const toda = new Date().toLocaleDateString('en-CA');
+                console.log("Today's Date:", toda);
+
+                const rest = await fetch('http://localhost:3000/transactions');
+                if (!rest.ok) throw new Error('Failed to fetch transactions');
+                const transaction = await rest.json();
+
+                console.log("Fetched Transactions:", transaction);
+
+                const dailyTransaction = transaction.filter(t => t.date === toda);
+                console.log("Filtered Transactions:", dailyTransaction);
+
+                let totalIncom = 0;
+                let totalExpens = 0;
+
+                const tableBody = document.getElementById('transactionTable');
+                tableBody.innerHTML = dailyTransaction.length
+                    ? dailyTransaction.map(t => {
+                        if (t.type === 'income') totalIncom += Number(t.amount);
+                        if (t.type === 'expense') totalExpens += Number(t.amount);
+                        return `
+                            <tr>
+                                <td>${t.description}</td>
+                                <td>${t.amount}</td>
+                                <td>${t.type}</td>
+                            </tr>`;
+                    }).join('')
+                    : "<tr><td colspan='3'>No transactions found for today.</td></tr>";
+
+                document.getElementById('totalIncome').textContent = totalIncom.toFixed(2);
+                document.getElementById('totalExpense').textContent = totalExpens.toFixed(2);
+
+            } catch (error) {
+                console.error('Error loading transactions:', error);
+            }
+        }
+
+        loadDailyTransaction();
+    </script>
+</body>
+</html>

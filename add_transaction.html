@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Transaction</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h2 class="text-center mb-4">Add New Transaction</h2>
+
+                <!-- Form container for alerts -->
+                <div id="transactionFormContainer">
+                    <div class="form-group">
+                        <input type="text" id="description" class="form-control" placeholder="Description">
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="amount" class="form-control" placeholder="Amount">
+                    </div>
+                    <div class="form-group">
+                        <select id="type" class="form-control">
+                            <option value="income">Income</option>
+                            <option value="expense">Expense</option>
+                        </select>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-primary btn-block mb-3" onclick="addTransactio()">Add Transaction</button>
+                        <button class="btn btn-secondary btn-block" onclick="window.location.href='index.html'">Back to Home</button>
+                    </div>
+                </div>
+                <!-- End form container -->
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        async function addTransactio() {
+            const description = document.getElementById('description').value.trim();
+            const amount = document.getElementById('amount').value.trim();
+            const type = document.getElementById('type').value;
+
+            const formContainer = document.getElementById('transactionFormContainer');
+
+            if (!description || !amount) {
+                // Create and display a Bootstrap error alert
+                const alertDiv = document.createElement('div');
+                alertDiv.classList.add('alert', 'alert-danger', 'alert-dismissible', 'fade', 'show');
+                alertDiv.setAttribute('role', 'alert');
+                alertDiv.innerHTML = `
+                    <strong>Error!</strong> Please enter description and amount.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                `;
+                formContainer.insertBefore(alertDiv, formContainer.firstChild);
+                return;
+            }
+
+            try {
+                const res = await fetch('http://localhost:3000/transactions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        description,
+                        amount,
+                        type
+                    })
+                });
+
+                if (!res.ok) {
+                    // Create and display a Bootstrap error alert for server-side failure
+                    const alertDiv = document.createElement('div');
+                    alertDiv.classList.add('alert', 'alert-danger', 'alert-dismissible', 'fade', 'show');
+                    alertDiv.setAttribute('role', 'alert');
+                    alertDiv.innerHTML = `
+                        <strong>Error!</strong> Failed to add transaction.  Please try again.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    `;
+                    formContainer.insertBefore(alertDiv, formContainer.firstChild);
+                    throw new Error('Failed to add transaction');
+                }
+
+                // Create and display a Bootstrap success alert
+                const successAlertDiv = document.createElement('div');
+                successAlertDiv.classList.add('alert', 'alert-success', 'alert-dismissible', 'fade', 'show');
+                successAlertDiv.setAttribute('role', 'alert');
+                successAlertDiv.innerHTML = `
+                    <strong>Success!</strong> Transaction added successfully!
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                `;
+                formContainer.insertBefore(successAlertDiv, formContainer.firstChild);
+
+                // Clear the form inputs
+                document.getElementById('description').value = '';
+                document.getElementById('amount').value = '';
+
+                // Remove the success alert after a few seconds
+                setTimeout(() => {
+                    successAlertDiv.remove();
+                }, 3000); // Remove after 3 seconds
+
+            } catch (error) {
+                console.error('Error adding transaction:', error);
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+{
+  "transactions": [
+    {
+      "id": 1741425063322,
+      "description": "wan2",
+      "amount": "3500.00",
+      "type": "income",
+      "date": "2025-03-08"
+    },
+    {
+      "id": 1741425120989,
+      "description": "wan",
+      "amount": "3500.00",
+      "type": "income",
+      "date": "2025-03-08"
+    },
+    {
+      "id": 1741425496297,
+      "description": "electric",
+      "amount": "3500.00",
+      "type": "income",
+      "date": "2025-03-08"
+    },
+    {
+      "id": 1741426059497,
+      "description": "docker github",
+      "amount": "3500.00",
+      "type": "income",
+      "date": "2025-03-08"
+    }
+  ]
+}

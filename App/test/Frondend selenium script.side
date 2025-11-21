@@ -1,0 +1,242 @@
+{
+  "id": "ed4f63e3-0eb0-4922-a5d1-487df9433495",
+  "version": "2.0",
+  "name": "Finance app test",
+  "url": "https://mani0331.github.io",
+  "tests": [{
+    "id": "32126296-4efa-47ea-95e2-31c7247db168",
+    "name": "finance app test",
+    "commands": [{
+      "id": "742e0619-47fe-4361-a462-ef8d2f758d28",
+      "comment": "",
+      "command": "open",
+      "target": "/Personal-Finance-Tracker-Application-/index.html",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d9b0f121-837b-48bc-9ef3-e6d00f9f1c59",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1366x728",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b24676a1-22c2-4a45-8d8a-f489806bced5",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Add Transaction",
+      "targets": [
+        ["linkText=Add Transaction", "linkText"],
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//a[contains(text(),'Add Transaction')]", "xpath:link"],
+        ["xpath=//a[contains(@href, 'add_transaction.html')]", "xpath:href"],
+        ["xpath=//a", "xpath:position"],
+        ["xpath=//a[contains(.,'Add Transaction')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "87d1f87d-edec-405a-ba3e-008c066bcf8e",
+      "comment": "",
+      "command": "click",
+      "target": "id=description",
+      "targets": [
+        ["id=description", "id"],
+        ["css=#description", "css:finder"],
+        ["xpath=//input[@id='description']", "xpath:attributes"],
+        ["xpath=//div[@id='transactionFormContainer']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fb9e015f-cfc2-455e-b2ad-6ed0c9f16549",
+      "comment": "",
+      "command": "type",
+      "target": "id=description",
+      "targets": [
+        ["id=description", "id"],
+        ["css=#description", "css:finder"],
+        ["xpath=//input[@id='description']", "xpath:attributes"],
+        ["xpath=//div[@id='transactionFormContainer']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "docker github"
+    }, {
+      "id": "be23d0e1-9402-4fb7-b09c-e3d101b62827",
+      "comment": "",
+      "command": "click",
+      "target": "id=amount",
+      "targets": [
+        ["id=amount", "id"],
+        ["css=#amount", "css:finder"],
+        ["xpath=//input[@id='amount']", "xpath:attributes"],
+        ["xpath=//div[@id='transactionFormContainer']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a1519e74-4a39-41ca-adb2-3fa0c8ce93e6",
+      "comment": "",
+      "command": "type",
+      "target": "id=amount",
+      "targets": [
+        ["id=amount", "id"],
+        ["css=#amount", "css:finder"],
+        ["xpath=//input[@id='amount']", "xpath:attributes"],
+        ["xpath=//div[@id='transactionFormContainer']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "3500.00"
+    }, {
+      "id": "31560e28-4f7d-402d-bc10-d2b542521838",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//button[@onclick='addTransactio()']", "xpath:attributes"],
+        ["xpath=//div[@id='transactionFormContainer']/div[4]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Add Transaction')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4e25fedb-7e66-4c50-90c0-f5011d1b9ef8",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-secondary",
+      "targets": [
+        ["css=.btn-secondary", "css:finder"],
+        ["xpath=//button[@onclick=\"window.location.href='index.html'\"]", "xpath:attributes"],
+        ["xpath=//div[@id='transactionFormContainer']/div[5]/button[2]", "xpath:idRelative"],
+        ["xpath=//button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Back to Home')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6036600c-ac51-47de-ac47-458c900da111",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Daily Transaction History",
+      "targets": [
+        ["linkText=Daily Transaction History", "linkText"],
+        ["css=.btn-warning", "css:finder"],
+        ["xpath=//a[contains(text(),'Daily Transaction History')]", "xpath:link"],
+        ["xpath=//a[contains(@href, 'daily_transaction.html')]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Daily Transaction History')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f362e43a-a233-495f-a639-7ab78f3f8c65",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@onclick=\"window.location.href='index.html'\"]", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Back to Home')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "805177a0-7ef0-4ce4-b612-0b9fa509ac49",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Transaction History",
+      "targets": [
+        ["linkText=Transaction History", "linkText"],
+        ["css=.btn-success", "css:finder"],
+        ["xpath=//a[contains(text(),'Transaction History')]", "xpath:link"],
+        ["xpath=//a[contains(@href, 'transaction_history.html')]", "xpath:href"],
+        ["xpath=//a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'Transaction History')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4a826b3f-9172-4de6-9d81-50b75cb0743f",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(5) > td:nth-child(2) > .form-control",
+      "targets": [
+        ["css=tr:nth-child(5) > td:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=(//input[@value='docker github'])[2]", "xpath:attributes"],
+        ["xpath=//tbody[@id='transactionTable']/tr[5]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[5]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2dffa863-1bfa-438b-b868-b0da6a009082",
+      "comment": "",
+      "command": "type",
+      "target": "css=tr:nth-child(5) > td:nth-child(2) > .form-control",
+      "targets": [
+        ["css=tr:nth-child(5) > td:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=(//input[@value='docker github'])[2]", "xpath:attributes"],
+        ["xpath=//tbody[@id='transactionTable']/tr[5]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[5]/td[2]/input", "xpath:position"]
+      ],
+      "value": "docker github1"
+    }, {
+      "id": "ec6a7294-74b9-4a04-be3e-f283dae45766",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(5) .btn-warning",
+      "targets": [
+        ["css=tr:nth-child(5) .btn-warning", "css:finder"],
+        ["xpath=//button[@onclick='showUpdateConfirmation(1741426367003, this)']", "xpath:attributes"],
+        ["xpath=//tbody[@id='transactionTable']/tr[5]/td[5]/button", "xpath:idRelative"],
+        ["xpath=//tr[5]/td[5]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6d95301a-681c-4ed3-81b9-030a9c99ffb4",
+      "comment": "",
+      "command": "click",
+      "target": "id=confirmUpdateBtn",
+      "targets": [
+        ["id=confirmUpdateBtn", "id"],
+        ["css=#confirmUpdateBtn", "css:finder"],
+        ["xpath=//button[@id='confirmUpdateBtn']", "xpath:attributes"],
+        ["xpath=//div[@id='updateConfirmationModal']/div/div/div[3]/button[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div[3]/button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Update')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3d6fea5a-a99b-4cb0-a88d-3d7accf9d12a",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(5) .btn-danger",
+      "targets": [
+        ["css=tr:nth-child(5) .btn-danger", "css:finder"],
+        ["xpath=//button[@onclick='showDeleteConfirmation(1741426367003)']", "xpath:attributes"],
+        ["xpath=//tbody[@id='transactionTable']/tr[5]/td[5]/button[2]", "xpath:idRelative"],
+        ["xpath=//tr[5]/td[5]/button[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "93daf282-1901-4640-9e9a-aebd0e320a5c",
+      "comment": "",
+      "command": "click",
+      "target": "id=confirmDeleteBtn",
+      "targets": [
+        ["id=confirmDeleteBtn", "id"],
+        ["css=#confirmDeleteBtn", "css:finder"],
+        ["xpath=//button[@id='confirmDeleteBtn']", "xpath:attributes"],
+        ["xpath=//div[@id='deleteConfirmationModal']/div/div/div[3]/button[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/button[2]", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "54f65c81-a329-4220-9faf-ac35c342a94c",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["32126296-4efa-47ea-95e2-31c7247db168"]
+  }],
+  "urls": ["https://mani0331.github.io/"],
+  "plugins": []
+}

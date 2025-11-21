@@ -1,0 +1,7 @@
+open this link in browser : https://mani0331.github.io/Personal-Finance-Tracker-Application-/index.html
+intall node js
+open cmd and navigate to App directory
+install dependencies : npm i
+run node js file : node server.js
+you see this link in terminal : Server running on http://localhost:3000
+refresh your browser and use this App
